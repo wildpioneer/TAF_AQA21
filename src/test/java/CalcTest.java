@@ -2,6 +2,7 @@ import data.StaticProvider;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.security.DigestException;
 import java.util.List;
 
 public class CalcTest extends BaseTest {
@@ -40,14 +41,13 @@ public class CalcTest extends BaseTest {
     }
 
 
-    //@Test (dataProvider = "dataForSum", dataProviderClass = StaticProvider.class, threadPoolSize = 3)
-    @Test (dataProvider = "dataForSum", dataProviderClass = StaticProvider.class)
+    @Test (dataProvider = "dataForSum", dataProviderClass = StaticProvider.class, threadPoolSize = 3)
     public void testDataProvider(int a, int b, int expectedResult, String text) {
         System.out.println(text);
         Assert.assertEquals(calculator.sum(a, b), expectedResult, "Неверная сумма...");
     }
 
-    @Test (expectedExceptions = NullPointerException.class)
+    @Test (expectedExceptions = {NullPointerException.class, DigestException.class})
     public void testExceptions() {
         List list = null;
         int size = list.size();
