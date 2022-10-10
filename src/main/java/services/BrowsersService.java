@@ -48,7 +48,7 @@ public class BrowsersService {
     }
 
     public WebDriver getDriver() {
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
 
         return driver;
