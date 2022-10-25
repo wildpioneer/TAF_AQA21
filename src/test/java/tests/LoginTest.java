@@ -2,6 +2,7 @@ package tests;
 
 import baseEntities.BaseTest;
 import configuration.ReadProperties;
+import elements.CheckBox;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
