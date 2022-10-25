@@ -43,8 +43,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void incorrectPswTest() {
-        new UpdateProjectPage(driver).nameInput();
-        new AddProjectPage(driver).getSaveButton();
+    public void test() {
+        Assert.assertTrue(false);
     }
 }

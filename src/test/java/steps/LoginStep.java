@@ -28,7 +28,6 @@ public class LoginStep extends BaseStep {
         return new DashboardPage(driver);
     }
 
-    @Step
     public LoginPage loginIncorrect(String email, String psw) {
         login(email, psw);
 
