@@ -36,7 +36,7 @@ public class BaseTest {
 
     @AfterMethod(description = "Завершение")
     public void tearDown(ITestResult testResult) {
-        // Плохое решение - потому, что Screenshot добавляется в шаг TearDown
+        // Solution - 2: Плохое решение - потому, что Screenshot добавляется в шаг TearDown
         /*
         if (testResult.getStatus() == ITestResult.FAILURE) {
             try {
@@ -50,8 +50,10 @@ public class BaseTest {
         driver.quit();
     }
 
+    // Solution - 2:
     @Attachment(value = "Page screenshot", type = "image/png")
     private byte[] saveScreenshot(byte[] screenshot) {
         return screenshot;
     }
+    // Solution - 2: Finish
 }
