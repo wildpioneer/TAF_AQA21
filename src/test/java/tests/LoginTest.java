@@ -41,9 +41,4 @@ public class LoginTest extends BaseTest {
                         .getErrorTextElement().getText()
                 , "Email/Login or Password is incorrect. Please try again.");
     }
-
-    @Test
-    public void test() {
-        Assert.assertTrue(false);
-    }
 }
