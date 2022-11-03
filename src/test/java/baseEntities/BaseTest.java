@@ -1,56 +1,32 @@
 package baseEntities;
 
+import com.codeborne.selenide.AssertionMode;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import configuration.ReadProperties;
-import configuration.UpdateEnvironmentProperties;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.Description;
-import org.jetbrains.annotations.NotNull;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.ITestContext;
-import org.testng.ITestResult;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
-import services.BrowsersService;
-import steps.LoginStep;
-import utils.InvokedListener;
+import org.testng.annotations.BeforeSuite;
 
-@Listeners(InvokedListener.class)
+import static com.codeborne.selenide.Selenide.*;
+
 public class BaseTest {
-    protected WebDriver driver;
-    protected LoginStep loginStep;
-    private Capabilities capabilities;
 
-    @BeforeMethod(description = "Настройка")
-    @Description("Настройка")
-    public void setUp(@NotNull ITestContext iTestContext) {
-        driver = new BrowsersService().getDriver();
-        iTestContext.setAttribute("driver", driver);
+    @BeforeSuite
+    public void setUp() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-        capabilities = ((RemoteWebDriver)driver).getCapabilities();
-
-        // Open te main page
-        driver.get(ReadProperties.getUrl());
-
-        // Init steps
-        loginStep = new LoginStep(driver);
+        Configuration.browser = ReadProperties.browserName();
+        Configuration.baseUrl = ReadProperties.getUrl();
+        Configuration.timeout = 8000;
+        Configuration.fastSetValue = true;
+        //Configuration.assertionMode = AssertionMode.SOFT;
+        //Configuration.headless = true;
+        //Configuration.reportsFolder = "target/";
     }
 
-    @AfterMethod(description = "Завершение")
-    public void tearDown(ITestResult testResult) {
-
-        driver.quit();
-    }
-
-    @AfterTest
-    public void storeInfo() {
-        UpdateEnvironmentProperties.setProperty("os.name", System.getProperty("os.name"));
-        UpdateEnvironmentProperties.setProperty("user.home", System.getProperty("user.home"));
-        UpdateEnvironmentProperties.setProperty("browser.name", capabilities.getBrowserName());
-        UpdateEnvironmentProperties.setProperty("browser.version", capabilities.getBrowserVersion());
-        UpdateEnvironmentProperties.storeEnvProperties();
+    @AfterMethod
+    public void tearDown() {
+        closeWebDriver();
     }
 }
