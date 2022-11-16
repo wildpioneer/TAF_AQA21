@@ -1,0 +1,22 @@
+<project>
+    <name>Project_1</name>
+    <id tagName = "True">21</id>
+    <employee>
+        <name>Petrov</name>
+        <age>31</age>
+    </employee>
+    <id_list>
+        <id_entity>
+            <id_number>1</id_number>
+        </id_entity>
+        <id_entity>
+            <id_number>2</id_number>
+        </id_entity>
+        <id_entity>
+            <id_number>3</id_number>
+        </id_entity>
+        <id_entity>
+            <id_number>4</id_number>
+        </id_entity>
+    </id_list>
+</project>
