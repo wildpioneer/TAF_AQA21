@@ -3,7 +3,7 @@
 <suite name="Main Suite">
     <test name="Smoke">
         <classes>
-            <class name="tests.LoginTest"/>
+            <class name="tests.gui.LoginTest"/>
         </classes>
     </test>
 </suite>
