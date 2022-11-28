@@ -1,10 +1,13 @@
 package dbEntities;
 
 import models.CustomerBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import services.DataBaseService;
 import java.sql.ResultSet;
 
 public class CustomersTable {
+    Logger logger = LoggerFactory.getLogger(CustomersTable.class);
     private DataBaseService dataBaseService;
 
     public CustomersTable(DataBaseService dataBaseService) {
@@ -12,14 +15,14 @@ public class CustomersTable {
     }
 
     public void dropTable() {
-        System.out.println("Удаляем customers таблицу");
+        logger.trace("Удаляем customers таблицу");
         String dropTableCustomersSQL = "DROP TABLE Customers;";
 
         dataBaseService.executeSQL(dropTableCustomersSQL);
     }
 
     public void createCustomersTable() {
-        System.out.println("Создаем customers таблицу");
+        logger.info("Создаем customers таблицу");
 
         String createTableSQL = "CREATE TABLE Customers (" +
                 "ID SERIAL PRIMARY KEY, " +
