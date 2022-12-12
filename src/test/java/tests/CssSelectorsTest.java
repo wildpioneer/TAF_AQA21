@@ -45,7 +45,7 @@ public class CssSelectorsTest {
         // Поиск по class c учетом иерархии
         Assert.assertEquals(2, driver.findElements(By.cssSelector("#Lastname .markup")).size());
 
-        // Поиск всех элементов с тэгом h1 или p
+        // Поиск всех элементов с тэгом h1 или ph1, p
         Assert.assertEquals(8, driver.findElements(By.cssSelector("h1, p")).size());
 
         // Поиск всех элементов с тэгом p у которых непосредственный родитель с тэгом div
@@ -60,7 +60,7 @@ public class CssSelectorsTest {
         // Поиск всех элементов у которых присутствует аттрибут id со значением заканчивающимся на какое-то value
         Assert.assertEquals(1, driver.findElements(By.cssSelector("[id$='ess']")).size());
 
-        // Поиск всех элементов у которых присутствует аттрибут id со значением начинающимся на какое-то value
+        // Поиск всех элементов у которых присутствует аттрибут id с начинающимся словом value
         Assert.assertEquals(1, driver.findElements(By.cssSelector("[id|=my]")).size());
 
         // Поиск всех элементов у которых присутствует аттрибут id со значением начинающимся на какое-то value
@@ -68,6 +68,9 @@ public class CssSelectorsTest {
 
         // Поиск всех элементов у которых присутствует аттрибут title со значением содержащим слово целиком
         Assert.assertEquals(1, driver.findElements(By.cssSelector("[title~=beautiful]")).size());
+
+        // Поиск всех элементов у которых присутствует аттрибут title со значением содержащим подстроку
+        Assert.assertEquals(1, driver.findElements(By.cssSelector("[title*='o beautiful']")).size());
 
         // Поиск всех disabled элементов
         Assert.assertEquals(1, driver.findElements(By.cssSelector(":disabled")).size());

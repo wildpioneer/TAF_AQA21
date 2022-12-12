@@ -92,14 +92,17 @@ public class xPathSelectors {
         // Аналог родительского div и на любом уровене ниже div
         Assert.assertTrue(driver.findElement(By.xpath("//div//div")).isDisplayed());
 
-        // Поиск элемента с тэгом div у которого есть аьттрибут id
+        // Поиск элемента с тэгом div у которого есть аттрибут id
         Assert.assertTrue(driver.findElement(By.xpath("//div[@id]")).isDisplayed());
 
         // Поиск элемента у которого есть аттрибут id cо значением top-logo
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id = 'top-logo']")).isDisplayed());
 
-        // Поиск элемента у которого есть аттрибут method cо значением и фттрибут target со значением
+        // Поиск элемента у которого есть аттрибут method cо значением и аттрибут target со значением
         Assert.assertTrue(driver.findElement(By.xpath("//*[@method='post' and @target='_blank']")).isDisplayed());
+
+        // Поиск элемента c аттрибутом lang или class со значением
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@lang or @class=\"noSel newsletter\"]")).isDisplayed());
 
         // Поиск элемента у которого значение аттрибута начинается с
         Assert.assertTrue(driver.findElement(By.xpath("//*[starts-with(@id, 'new')]")).isDisplayed());
@@ -108,8 +111,8 @@ public class xPathSelectors {
         Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@id, 'Template')]")).isDisplayed());
 
         // Поиск элемента у которого текстовое значение содержит равно
-        Assert.assertTrue(driver.findElement(By.xpath("//div[text() = 'All Projects']")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//*[. = 'Todos']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//*[text() = 'We are all animals!']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//*[. = '<table>']")).isDisplayed());
 
         // Поиск элемента у которого текстовое значение содержит подстроку
         Assert.assertTrue(driver.findElement(By.xpath("//*[contains(text(), 'All Projects')]")).isDisplayed());
@@ -129,8 +132,13 @@ public class xPathSelectors {
         // Поиск всех предков с тэгом div у элемента с тэгом h1
         Assert.assertTrue(driver.findElement(By.xpath("//h1/ancestor::div")).isDisplayed());
 
-        // Использование child - все дочерние элементы с тэго a от div
+        // Использование child - непосредственно дочерние элементы с тэго a от div
+        Assert.assertTrue(driver.findElement(By.xpath("//div/a")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//div/child::a")).isDisplayed());
+
+        // Использование child - все дочерние элементы с тэго a от div
+        Assert.assertTrue(driver.findElement(By.xpath("//div//a")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//div/descendant::a")).isDisplayed());
 
         //Использование following - Выбирает всё в документе после закрытия тэга текущего узла
         Assert.assertTrue(driver.findElement(By.xpath("//*[@class='dialog-title']/following::form")).isDisplayed());
